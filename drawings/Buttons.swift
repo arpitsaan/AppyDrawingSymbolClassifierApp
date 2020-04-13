@@ -25,7 +25,6 @@ struct MagicButtonView: View {
         .cornerRadius(5)
         .padding(.horizontal, 20)
         .disabled(false)
-        .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .trailing)
     }
 }
 
@@ -45,7 +44,6 @@ struct ClearButtonView: View {
         .cornerRadius(5)
         .padding(.horizontal, 20)
         .disabled(false)
-        .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 50, idealHeight: 50, maxHeight: 50, alignment: .center)
     }
 }
 

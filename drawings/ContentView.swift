@@ -37,34 +37,37 @@ struct ContentView : View {
 struct DetectionView : View {
     @State var canvas = PencilCanvas()
     @State var text = " "
+    @State var descriptionText = " "
     
     private let classifier = TickCrossDetector()
     
     var body: some View {
         VStack {
-            HStack {
-                //Clear button
-                Button(action: {
-                    self.clearCanvas()
-                }) {
-                    ClearButtonView()
-                }
-                
-                
-                //Magic Button
-                Button(action: {
-                    self.updateClassification()
-                }) {
-                    MagicButtonView()
-                }
+            //Clear button
+            Button(action: {
+                self.clearCanvas()
+            }) {
+                ClearButtonView()
             }
-
+            
+            //Detection area
             HStack {
             self.canvas.frame(width: 100, height: 100, alignment: .center).border(Color.yellow, width: 1)
                 
                 Text(self.text).font(.headline).padding().frame(width: 500, height: 100, alignment: .leading)
                 
             }.border(Color.gray)
+            
+            
+            //Magic Button
+            Button(action: {
+                self.updateClassification()
+            }) {
+                MagicButtonView()
+            }
+            
+            //Description
+            Text(self.descriptionText)
         }
     }
     
@@ -75,6 +78,7 @@ extension DetectionView {
     private func clearCanvas() {
         self.canvas.canvasView.drawing = PKDrawing()
         self.text = "  "
+        self.descriptionText = "  "
     }
     
     private func updateClassification() {
@@ -84,8 +88,11 @@ extension DetectionView {
             switch result {
             case .failure(_):
                 self.text = "E"
+                self.descriptionText = "  "
+                
             case .success(let symbol):
                 self.text = symbol.rawValue
+                self.descriptionText = self.classifier.text
             }
         }
     }

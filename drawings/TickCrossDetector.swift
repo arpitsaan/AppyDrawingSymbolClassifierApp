@@ -96,6 +96,8 @@ class TickCrossDetector {
                    return String(format: "  (%.2f) %@", classification.confidence, classification.identifier)
                 }
                 self.text = "Classification:\n" + descriptions.joined(separator: "\n")
+                print(self.text)
+                
                 if let h = self.compHandler, let label = topClassifications.first?.identifier {
                     if label == "tick" {
                         h(.success(.tick))
