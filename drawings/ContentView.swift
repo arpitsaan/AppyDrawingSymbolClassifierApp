@@ -67,7 +67,7 @@ struct DetectionView : View {
             }
             
             //Description
-            Text(self.descriptionText)
+            Text(self.descriptionText).lineLimit(10).frame(width: 500, height: 100, alignment: .center)
         }
     }
     
