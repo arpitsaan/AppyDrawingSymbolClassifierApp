@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "aaron-burden-9m5z1my-xZs-unsplash.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "aaron-burden-9m5z1my-xZs-unsplash-1.jpg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "aaron-burden-9m5z1my-xZs-unsplash-2.jpg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -13,6 +13,13 @@
 		2B7D538D2442721E0070A8FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7D538C2442721E0070A8FE /* Assets.xcassets */; };
 		2B7D53902442721E0070A8FE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7D538F2442721E0070A8FE /* Preview Assets.xcassets */; };
 		2B7D53932442721E0070A8FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7D53912442721E0070A8FE /* LaunchScreen.storyboard */; };
+		2B7D539B244297080070A8FE /* AcitivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D539A244297080070A8FE /* AcitivityViewController.swift */; };
+		2B7D539D2442A0900070A8FE /* TickCrossDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D539C2442A0900070A8FE /* TickCrossDetector.swift */; };
+		2B7D539F2442A0A50070A8FE /* TickCrossClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D539E2442A0A50070A8FE /* TickCrossClassifier.mlmodel */; };
+		2B7D53A12443E5F00070A8FE /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D53A02443E5F00070A8FE /* Archive.swift */; };
+		2B7D53A32443E6800070A8FE /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D53A22443E6800070A8FE /* Symbols.swift */; };
+		2B7D53A52443E7C10070A8FE /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D53A42443E7C10070A8FE /* Buttons.swift */; };
+		2B7D53A72443E7F70070A8FE /* PencilCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D53A62443E7F70070A8FE /* PencilCanvas.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +31,13 @@
 		2B7D538F2442721E0070A8FE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2B7D53922442721E0070A8FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B7D53942442721E0070A8FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B7D539A244297080070A8FE /* AcitivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcitivityViewController.swift; sourceTree = "<group>"; };
+		2B7D539C2442A0900070A8FE /* TickCrossDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickCrossDetector.swift; sourceTree = "<group>"; };
+		2B7D539E2442A0A50070A8FE /* TickCrossClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TickCrossClassifier.mlmodel; sourceTree = "<group>"; };
+		2B7D53A02443E5F00070A8FE /* Archive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
+		2B7D53A22443E6800070A8FE /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
+		2B7D53A42443E7C10070A8FE /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		2B7D53A62443E7F70070A8FE /* PencilCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilCanvas.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +70,20 @@
 		2B7D53852442721C0070A8FE /* drawings */ = {
 			isa = PBXGroup;
 			children = (
-				2B7D53862442721C0070A8FE /* AppDelegate.swift */,
-				2B7D53882442721C0070A8FE /* SceneDelegate.swift */,
 				2B7D538A2442721C0070A8FE /* ContentView.swift */,
+				2B7D53A62443E7F70070A8FE /* PencilCanvas.swift */,
+				2B7D539C2442A0900070A8FE /* TickCrossDetector.swift */,
+				2B7D53862442721C0070A8FE /* AppDelegate.swift */,
+				2B7D539E2442A0A50070A8FE /* TickCrossClassifier.mlmodel */,
+				2B7D53882442721C0070A8FE /* SceneDelegate.swift */,
 				2B7D538C2442721E0070A8FE /* Assets.xcassets */,
 				2B7D53912442721E0070A8FE /* LaunchScreen.storyboard */,
 				2B7D53942442721E0070A8FE /* Info.plist */,
 				2B7D538E2442721E0070A8FE /* Preview Content */,
+				2B7D539A244297080070A8FE /* AcitivityViewController.swift */,
+				2B7D53A02443E5F00070A8FE /* Archive.swift */,
+				2B7D53A22443E6800070A8FE /* Symbols.swift */,
+				2B7D53A42443E7C10070A8FE /* Buttons.swift */,
 			);
 			path = drawings;
 			sourceTree = "<group>";
@@ -146,9 +167,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B7D53A52443E7C10070A8FE /* Buttons.swift in Sources */,
+				2B7D53A72443E7F70070A8FE /* PencilCanvas.swift in Sources */,
 				2B7D53872442721C0070A8FE /* AppDelegate.swift in Sources */,
+				2B7D53A32443E6800070A8FE /* Symbols.swift in Sources */,
+				2B7D539B244297080070A8FE /* AcitivityViewController.swift in Sources */,
 				2B7D53892442721C0070A8FE /* SceneDelegate.swift in Sources */,
+				2B7D539F2442A0A50070A8FE /* TickCrossClassifier.mlmodel in Sources */,
+				2B7D539D2442A0900070A8FE /* TickCrossDetector.swift in Sources */,
 				2B7D538B2442721C0070A8FE /* ContentView.swift in Sources */,
+				2B7D53A12443E5F00070A8FE /* Archive.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,13 +314,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"drawings/Preview Content\"";
+				DEVELOPMENT_TEAM = 4Q6RKAKAZV;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = drawings/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.arpitsaan.drawings;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acyooman.drawings;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -305,13 +334,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"drawings/Preview Content\"";
+				DEVELOPMENT_TEAM = 4Q6RKAKAZV;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = drawings/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.arpitsaan.drawings;
+				PRODUCT_BUNDLE_IDENTIFIER = com.acyooman.drawings;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
