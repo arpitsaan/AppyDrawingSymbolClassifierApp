@@ -11,10 +11,24 @@ import PencilKit
 
 struct ContentView : View {
     
+    @State var isShowingTraining = false
     
     var body: some View {
         
-        DetectionView()
+        VStack {
+            Toggle.init(isOn: $isShowingTraining) {
+                Text("Show Training")
+            }.border(Color.white.opacity(0.1))
+            
+            
+            if (self.isShowingTraining) {
+                TrainingGridView()
+            } else {
+                DetectionView()
+            }
+            
+        }
+        
         
         //TrainingGridView()
     }
@@ -28,7 +42,7 @@ struct DetectionView : View {
     
     var body: some View {
         VStack {
-                
+            HStack {
                 //Clear button
                 Button(action: {
                     self.clearCanvas()
@@ -43,11 +57,12 @@ struct DetectionView : View {
                 }) {
                     MagicButtonView()
                 }
-                
+            }
 
             HStack {
             self.canvas.frame(width: 100, height: 100, alignment: .center).border(Color.yellow, width: 1)
-                Text(self.text).font(.headline)
+                
+                Text(self.text).font(.headline).padding().frame(width: 500, height: 100, alignment: .leading)
                 
             }.border(Color.gray)
         }
