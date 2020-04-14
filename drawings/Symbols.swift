@@ -13,14 +13,10 @@ public enum SymbolType: String {
     
     case tick
     case cross
-    case blank
     case circle
-    case dot
-    case downarrow
-    case uparrow
-    case later
-    
-    case unnamedsymbol
-    case nothingrecognised
-    case unclassifiable
+    //    case blank
+    //    case dot
+    //    case downarrow
+    //    case uparrow
+    //    case later
 }

@@ -69,6 +69,11 @@ struct DetectionView : View {
             
             //Description
             Text(self.descriptionText).lineLimit(10).frame(width: 500, height: 100, alignment: .center)
+            
+            //Model Description
+            ScrollView {
+                Text(classifier.modelDescription)
+            }
         }
     }
     

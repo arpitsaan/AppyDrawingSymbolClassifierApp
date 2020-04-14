@@ -17,6 +17,7 @@ class MLSymbolDetector {
     
     var symbolType = SymbolType.unknown
     var text = ""
+    var modelDescription = " "
     private var compHandler:Handler<SymbolType>?
     private var err = NSError.init(domain: "Random Arpit Error", code: 420, userInfo: nil)
     
@@ -28,7 +29,13 @@ class MLSymbolDetector {
              To use a different Core ML classifier model, add it to the project
              and replace `MobileNet` with that model's generated Swift class.
              */
-            let model = try VNCoreMLModel(for: ArpitDrawingClassifier().model)
+            let rawModel = ArpitDrawingClassifier().model
+            self.modelDescription = "\(ArpitDrawingClassifier.urlOfModelInThisBundle.absoluteString)\n\n\(rawModel.modelDescription.metadata.debugDescription) \n\n \(rawModel.configuration.debugDescription) \n\n \(rawModel.modelDescription.outputDescriptionsByName) \n\n \(rawModel.modelDescription.predictedFeatureName ?? "")\n\n \(rawModel.modelDescription.predictedProbabilitiesName ?? "")"
+            
+            print("[Arpit DEBUG] Model Desciption\n", rawModel.modelDescription.metadata.description)
+            
+            let model = try VNCoreMLModel(for: rawModel)
+            
             
             let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] request, error in
                 self?.processClassifications(for: request, error: error)
@@ -72,7 +79,6 @@ class MLSymbolDetector {
     func processClassifications(for request: VNRequest, error: Error?) {
         DispatchQueue.main.async {
             guard let results = request.results else {
-                self.symbolType = .unclassifiable
                 self.text = "Unable to classify image.\n\(error!.localizedDescription)"
                 if let h = self.compHandler {
                     h(.failure(NSError.init(domain: self.text, code: 1, userInfo: nil)))
@@ -84,7 +90,6 @@ class MLSymbolDetector {
         
             if classifications.isEmpty {
                 self.text = "Nothing recognized."
-                self.symbolType = .nothingrecognised
                 if let h = self.compHandler {
                     h(.failure(NSError.init(domain: self.symbolType.rawValue, code: 2, userInfo: nil)))
                 }
@@ -103,7 +108,7 @@ class MLSymbolDetector {
                     if let symbol = SymbolType.init(rawValue: label) {
                         h(.success(symbol))
                     } else {
-                        h(.success(.unnamedsymbol))
+                        h(.success(.unknown))
                     }
                 }
             }
