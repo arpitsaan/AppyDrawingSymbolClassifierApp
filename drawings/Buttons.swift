@@ -56,7 +56,7 @@ struct ShareButtonView: View {
         HStack {
             Image(systemName: "square.and.arrow.up")
                 .font(.title)
-            Text("Share All (60)")
+            Text("Save")
                 .fontWeight(.semibold)
                 .font(.title)
             activityViewController

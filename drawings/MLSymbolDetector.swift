@@ -10,7 +10,7 @@ import CoreML
 import Vision
 import ImageIO
 
-class TickCrossDetector {
+class MLSymbolDetector {
     // MARK: - Image Classification
     
     typealias Handler<T> = (Result<T, Error>) -> Void
@@ -28,7 +28,7 @@ class TickCrossDetector {
              To use a different Core ML classifier model, add it to the project
              and replace `MobileNet` with that model's generated Swift class.
              */
-            let model = try VNCoreMLModel(for: TickCrossClassifier().model)
+            let model = try VNCoreMLModel(for: ArpitDrawingClassifier().model)
             
             let request = VNCoreMLRequest(model: model, completionHandler: { [weak self] request, error in
                 self?.processClassifications(for: request, error: error)
@@ -99,10 +99,11 @@ class TickCrossDetector {
                 print(self.text)
                 
                 if let h = self.compHandler, let label = topClassifications.first?.identifier {
-                    if label == "tick" {
-                        h(.success(.tick))
+                    
+                    if let symbol = SymbolType.init(rawValue: label) {
+                        h(.success(symbol))
                     } else {
-                        h(.success(.cross))
+                        h(.success(.unnamedsymbol))
                     }
                 }
             }

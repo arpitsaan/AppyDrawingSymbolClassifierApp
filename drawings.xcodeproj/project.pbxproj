@@ -14,16 +14,17 @@
 		2B7D53902442721E0070A8FE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B7D538F2442721E0070A8FE /* Preview Assets.xcassets */; };
 		2B7D53932442721E0070A8FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B7D53912442721E0070A8FE /* LaunchScreen.storyboard */; };
 		2B7D539B244297080070A8FE /* AcitivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D539A244297080070A8FE /* AcitivityViewController.swift */; };
-		2B7D539D2442A0900070A8FE /* TickCrossDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D539C2442A0900070A8FE /* TickCrossDetector.swift */; };
+		2B7D539D2442A0900070A8FE /* MLSymbolDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D539C2442A0900070A8FE /* MLSymbolDetector.swift */; };
 		2B7D539F2442A0A50070A8FE /* TickCrossClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D539E2442A0A50070A8FE /* TickCrossClassifier.mlmodel */; };
 		2B7D53A12443E5F00070A8FE /* Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D53A02443E5F00070A8FE /* Archive.swift */; };
 		2B7D53A32443E6800070A8FE /* Symbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D53A22443E6800070A8FE /* Symbols.swift */; };
 		2B7D53A52443E7C10070A8FE /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D53A42443E7C10070A8FE /* Buttons.swift */; };
 		2B7D53A72443E7F70070A8FE /* PencilCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D53A62443E7F70070A8FE /* PencilCanvas.swift */; };
+		2B7D53A924444AD70070A8FE /* ArpitDrawingClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D53A824444AD70070A8FE /* ArpitDrawingClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2B7D53832442721C0070A8FE /* drawings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = drawings.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B7D53832442721C0070A8FE /* AppySymbolTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppySymbolTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7D53862442721C0070A8FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B7D53882442721C0070A8FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		2B7D538A2442721C0070A8FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,12 +33,13 @@
 		2B7D53922442721E0070A8FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B7D53942442721E0070A8FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B7D539A244297080070A8FE /* AcitivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcitivityViewController.swift; sourceTree = "<group>"; };
-		2B7D539C2442A0900070A8FE /* TickCrossDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickCrossDetector.swift; sourceTree = "<group>"; };
+		2B7D539C2442A0900070A8FE /* MLSymbolDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLSymbolDetector.swift; sourceTree = "<group>"; };
 		2B7D539E2442A0A50070A8FE /* TickCrossClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = TickCrossClassifier.mlmodel; sourceTree = "<group>"; };
 		2B7D53A02443E5F00070A8FE /* Archive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Archive.swift; sourceTree = "<group>"; };
 		2B7D53A22443E6800070A8FE /* Symbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Symbols.swift; sourceTree = "<group>"; };
 		2B7D53A42443E7C10070A8FE /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		2B7D53A62443E7F70070A8FE /* PencilCanvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PencilCanvas.swift; sourceTree = "<group>"; };
+		2B7D53A824444AD70070A8FE /* ArpitDrawingClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ArpitDrawingClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +64,7 @@
 		2B7D53842442721C0070A8FE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2B7D53832442721C0070A8FE /* drawings.app */,
+				2B7D53832442721C0070A8FE /* AppySymbolTrainer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,8 +73,9 @@
 			isa = PBXGroup;
 			children = (
 				2B7D538A2442721C0070A8FE /* ContentView.swift */,
+				2B7D53A824444AD70070A8FE /* ArpitDrawingClassifier.mlmodel */,
 				2B7D53A62443E7F70070A8FE /* PencilCanvas.swift */,
-				2B7D539C2442A0900070A8FE /* TickCrossDetector.swift */,
+				2B7D539C2442A0900070A8FE /* MLSymbolDetector.swift */,
 				2B7D53862442721C0070A8FE /* AppDelegate.swift */,
 				2B7D539E2442A0A50070A8FE /* TickCrossClassifier.mlmodel */,
 				2B7D53882442721C0070A8FE /* SceneDelegate.swift */,
@@ -99,9 +102,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2B7D53822442721C0070A8FE /* drawings */ = {
+		2B7D53822442721C0070A8FE /* AppySymbolTrainer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2B7D53972442721E0070A8FE /* Build configuration list for PBXNativeTarget "drawings" */;
+			buildConfigurationList = 2B7D53972442721E0070A8FE /* Build configuration list for PBXNativeTarget "AppySymbolTrainer" */;
 			buildPhases = (
 				2B7D537F2442721C0070A8FE /* Sources */,
 				2B7D53802442721C0070A8FE /* Frameworks */,
@@ -111,9 +114,9 @@
 			);
 			dependencies = (
 			);
-			name = drawings;
+			name = AppySymbolTrainer;
 			productName = drawings;
-			productReference = 2B7D53832442721C0070A8FE /* drawings.app */;
+			productReference = 2B7D53832442721C0070A8FE /* AppySymbolTrainer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -144,7 +147,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2B7D53822442721C0070A8FE /* drawings */,
+				2B7D53822442721C0070A8FE /* AppySymbolTrainer */,
 			);
 		};
 /* End PBXProject section */
@@ -173,8 +176,9 @@
 				2B7D53A32443E6800070A8FE /* Symbols.swift in Sources */,
 				2B7D539B244297080070A8FE /* AcitivityViewController.swift in Sources */,
 				2B7D53892442721C0070A8FE /* SceneDelegate.swift in Sources */,
+				2B7D53A924444AD70070A8FE /* ArpitDrawingClassifier.mlmodel in Sources */,
 				2B7D539F2442A0A50070A8FE /* TickCrossClassifier.mlmodel in Sources */,
-				2B7D539D2442A0900070A8FE /* TickCrossDetector.swift in Sources */,
+				2B7D539D2442A0900070A8FE /* MLSymbolDetector.swift in Sources */,
 				2B7D538B2442721C0070A8FE /* ContentView.swift in Sources */,
 				2B7D53A12443E5F00070A8FE /* Archive.swift in Sources */,
 			);
@@ -321,8 +325,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.acyooman.drawings;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.acyooman.AppySymbolTrainer;
+				PRODUCT_NAME = AppySymbolTrainer;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -341,8 +345,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.acyooman.drawings;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.acyooman.AppySymbolTrainer;
+				PRODUCT_NAME = AppySymbolTrainer;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -360,7 +364,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B7D53972442721E0070A8FE /* Build configuration list for PBXNativeTarget "drawings" */ = {
+		2B7D53972442721E0070A8FE /* Build configuration list for PBXNativeTarget "AppySymbolTrainer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B7D53982442721E0070A8FE /* Debug */,

@@ -35,7 +35,7 @@ struct PencilCanvasGrid: View {
     var rows: Int
     var cols: Int
     
-    init(_ rows: Int = 6, _ cols: Int = 10) {
+    init(_ rows: Int, _ cols: Int) {
         self.rows = rows
         self.cols = cols
         self.setupCanvas()
@@ -56,12 +56,18 @@ struct PencilCanvasGrid: View {
         }
     }
     
-    func getAllImages() -> [UIImage] {
+    func getAllImages(skipEmpty: Bool = false) -> [UIImage] {
         var images = [UIImage]()
         for row in self.canvases {
             for cell in row {
                 let size = cell.canvasView.bounds
-                let bitmap = cell.canvasView.drawing.image(from: size, scale: 4)
+                let drawingSize = cell.canvasView.drawing.bounds
+                
+                if skipEmpty == true && drawingSize.width<2 && drawingSize.height<2 {
+                    continue
+                }
+                
+                let bitmap = cell.canvasView.drawing.image(from: size, scale: 0.5)
                 images.append(bitmap)
             }
         }
@@ -71,7 +77,7 @@ struct PencilCanvasGrid: View {
     var body: some View {
         VStack {
             GridStack(rows: self.rows, columns: self.cols) { row,col in
-                self.canvases[row][col].frame(width: 100, height: 100, alignment: .center).border(Color.purple, width: 1)
+                self.canvases[row][col].frame(width: 112, height: 112, alignment: .center).border(Color.purple, width: 1)
             }
         }
     }
@@ -85,11 +91,13 @@ struct GridStack<Content: View>: View {
     let content: (Int, Int) -> Content
 
     var body: some View {
-        VStack {
-            ForEach(0 ..< rows, id: \.self) { row in
-                HStack {
-                    ForEach(0 ..< self.columns, id: \.self) { column in
-                        self.content(row, column)
+        ScrollView {
+            VStack {
+                ForEach(0 ..< rows, id: \.self) { row in
+                    HStack {
+                        ForEach(0 ..< self.columns, id: \.self) { column in
+                            self.content(row, column)
+                        }
                     }
                 }
             }

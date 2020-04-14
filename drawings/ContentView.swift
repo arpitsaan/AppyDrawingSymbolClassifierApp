@@ -11,13 +11,13 @@ import PencilKit
 
 struct ContentView : View {
     
-    @State var isShowingTraining = false
+    @State var isShowingTraining = true
     
     var body: some View {
         
         VStack {
             Toggle.init(isOn: $isShowingTraining) {
-                Text("Show Training")
+                Text("Show Training [TURN OFF DARK MODE!]")
             }.border(Color.white.opacity(0.1))
             
             
@@ -39,7 +39,7 @@ struct DetectionView : View {
     @State var text = " "
     @State var descriptionText = " "
     
-    private let classifier = TickCrossDetector()
+    private let classifier = MLSymbolDetector()
     
     var body: some View {
         VStack {
@@ -52,7 +52,7 @@ struct DetectionView : View {
             
             //Detection area
             HStack {
-            self.canvas.frame(width: 100, height: 100, alignment: .center).border(Color.yellow, width: 1)
+                self.canvas.frame(width: 112, height: 112, alignment: .center).border(Color.yellow, width: 1)
                 
                 Text(self.text).font(.headline).padding().frame(width: 500, height: 100, alignment: .leading)
                 
@@ -101,25 +101,89 @@ extension DetectionView {
 
 struct TrainingGridView : View {
     var activityViewController = SwiftUIActivityViewController()
-    @State var canvasGrid = PencilCanvasGrid()
+    @State var nameText = ""
+    @State var imagesToSave = [UIImage]()
+    @State private var selectedCategory = 0
+    @State private var showingAlert = false
+    @State var canvasGrid = PencilCanvasGrid(6, 6)
+    
+    var categories = ["tick", "cross", "circle"]
     
     var body: some View {
         VStack {
-            HStack {
-                
-                //Share Button
-                Button(action: {
-                    let images = self.canvasGrid.getAllImages()
-                    self.activityViewController.shareImages(images)
-                }) {
-                    ShareButtonView(activityViewController: activityViewController)
+            
+            //Grid
+            self.canvasGrid
+            
+            //Text input
+            Picker(selection: $selectedCategory, label: Text("Category")) {
+                ForEach(0 ..< categories.count) {
+                    Text(self.categories[$0])
                 }
             }
             
-            self.canvasGrid //show canva
+            
+            //Save Button
+            Button(action: {
+                self.imagesToSave = self.canvasGrid.getAllImages(skipEmpty: true)
+                let categoryName = self.categories[self.selectedCategory]
+                self.saveImages(self.imagesToSave, for: categoryName)
+                self.showingAlert = true
+            }) {
+                ShareButtonView(activityViewController: activityViewController)
+            }.alert(isPresented: $showingAlert) {
+                Alert(title: Text("Saved \(self.imagesToSave.count) images for \(self.categories[selectedCategory])."), message: nil, dismissButton: .default(Text("OK")))
+            }
+        }
+    }
+    
+    
+    func saveImages(_ images: [UIImage], for categoryName: String) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMd'_'HH:mm:ss"
+        let timeString = dateFormatter.string(from: Date())
+        
+        DispatchQueue.global(qos: .background).async {
+            for i in 0..<images.count {
+                let image = images[i]
+                let op = self.saveImage(image, category: categoryName.lowercased(), fileIndex: i, timeString: timeString)
+                DispatchQueue.main.async {
+                    print(op)
+                }
+            }
+        }
+    }
+    
+    
+    func saveImage(_ chosenImage: UIImage, category: String, fileIndex: Int, timeString: String) -> String {
+        
+        
+        let directoryPath =  NSHomeDirectory().appending("/Documents/\(category)/\(category)-\(timeString)/")
+        
+        if !FileManager.default.fileExists(atPath: directoryPath) {
+            do {
+                try FileManager.default.createDirectory(at: NSURL.fileURL(withPath: directoryPath), withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print(error)
+            }
+        }
+        
+        let filename = "\(category)_\(fileIndex)_\(timeString).png"
+        let filepath = directoryPath.appending(filename)
+        let url = NSURL.fileURL(withPath: filepath)
+        do {
+            try chosenImage.pngData()?.write(to: url, options: .atomic)
+            return String.init("\(directoryPath)/\(filename)")
+            
+        } catch {
+            print(error)
+            print("file cant not be save at path \(filepath), with error : \(error)");
+            return filepath
         }
     }
 }
+
 
 
 struct ContentView_Previews: PreviewProvider {
