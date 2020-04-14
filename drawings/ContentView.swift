@@ -8,6 +8,7 @@
 
 import SwiftUI
 import PencilKit
+import Combine
 
 struct ContentView : View {
     
@@ -22,7 +23,7 @@ struct ContentView : View {
             
             
             if (self.isShowingTraining) {
-                TrainingGridView()
+                TrainingGridView().environmentObject(CanvasGridStore())
             } else {
                 DetectionView()
             }
@@ -98,6 +99,22 @@ extension DetectionView {
     }
 }
 
+final class CanvasGridStore: ObservableObject {
+    let didChange = PassthroughSubject<CanvasGridStore, Never>()
+
+    @Published var canvasGrid = PencilCanvasGrid(6, 6)
+
+    func resetGrid() {
+        for row in self.canvasGrid.canvases {
+            for cell in row {
+                cell.canvasView.drawing = PKDrawing()
+            }
+        }
+        self.didChange.send(self)
+    }
+    
+}
+
 
 struct TrainingGridView : View {
     var activityViewController = SwiftUIActivityViewController()
@@ -105,38 +122,40 @@ struct TrainingGridView : View {
     @State var imagesToSave = [UIImage]()
     @State private var selectedCategory = 0
     @State private var showingAlert = false
-    @State var canvasGrid = PencilCanvasGrid(6, 6)
+    @EnvironmentObject private var gridStore:CanvasGridStore
+
     
     var categories = ["tick", "cross", "circle"]
     
     var body: some View {
         VStack {
             
-            //Grid
-            self.canvasGrid
-            
-            //Text input
-            Picker(selection: $selectedCategory, label: Text("Category")) {
-                ForEach(0 ..< categories.count) {
-                    Text(self.categories[$0])
-                }
-            }
-            
-            
             //Save Button
             Button(action: {
-                self.imagesToSave = self.canvasGrid.getAllImages(skipEmpty: true)
+                self.imagesToSave = self.gridStore.canvasGrid.getAllImages(skipEmpty: true)
                 let categoryName = self.categories[self.selectedCategory]
                 self.saveImages(self.imagesToSave, for: categoryName)
                 self.showingAlert = true
             }) {
                 ShareButtonView(activityViewController: activityViewController)
             }.alert(isPresented: $showingAlert) {
-                Alert(title: Text("Saved \(self.imagesToSave.count) images for \(self.categories[selectedCategory])."), message: nil, dismissButton: .default(Text("OK")))
+                Alert(title: Text("Saved \(self.imagesToSave.count) images for \(self.categories[selectedCategory])."), message: nil, dismissButton: .default(Text("OK")){
+                    self.gridStore.resetGrid()
+                    })
+            }
+            
+            
+            //Grid
+            self.gridStore.canvasGrid
+            
+            //Category Picker
+            Picker(selection: $selectedCategory, label: Text("Category")) {
+                ForEach(0 ..< categories.count) {
+                    Text(self.categories[$0])
+                }
             }
         }
     }
-    
     
     func saveImages(_ images: [UIImage], for categoryName: String) {
         
